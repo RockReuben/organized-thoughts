@@ -1,0 +1,53 @@
+<!doctype html>
+<head>
+  <link rel="stylesheet" type="text/css" href="style.css" />
+</head>
+<html lang="en">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bawd Law Craw Blog</title>
+  <style>
+    :root {
+      color-scheme: light dark;
+    }
+    body {
+      max-width: 36rem;
+      margin: 4rem auto;
+      padding: 0 1rem;
+      text-align: center;
+      font:
+        1.1rem/1.8 Georgia,
+        serif;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    a {
+      color: inherit;
+    }
+  </style>
+  <h1>Blog</h1>
+  <ul id="posts"></ul>
+  <script>
+    fetch('blogs/')
+      .then(r => r.text())
+      .then(t => {
+        const links = [...new DOMParser().parseFromString(t, 'text/html').querySelectorAll('a')]
+          .map(a => a.getAttribute('href'))
+          .filter(h => /\.html$/i.test(h))
+          .sort()
+          .reverse()
+        posts.innerHTML =
+          links
+            .map(
+              h =>
+                `<li><a href="blogs/${h}">${decodeURIComponent(h)
+                  .replace(/\.html$/i, '')
+                  .replace(/[-_]/g, ' ')}</a></li>`
+            )
+            .join('') || '<li>No posts yet.</li>'
+      })
+      .catch(() => (posts.innerHTML = '<li>Blog fetch failed.</li>'))
+  </script>
+</html>

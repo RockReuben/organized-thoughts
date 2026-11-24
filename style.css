@@ -1,0 +1,29 @@
+:root {
+  color-scheme: light dark;
+}
+
+body {
+  max-width: 36rem;
+  margin: 3rem auto;
+  padding: 0 1rem;
+  font:
+    1.1rem/1.7 Georgia,
+    serif;
+}
+
+h4 {
+  text-align: center;
+}
+
+img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+  padding: 1rem;
+  background: rgba(128, 128, 128, 0.15);
+  border-radius: 4px;
+}
+a {
+  color: inherit;
+}
